@@ -2,6 +2,5 @@
  * http://usejsdoc.org/
  */
 
-exports.app = function() {
-	
-};
+exports.app = require('lib/app');
+

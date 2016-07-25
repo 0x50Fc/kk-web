@@ -1,13 +1,19 @@
 {
-  "name": "kk",
+  "name": "kk-web",
   "version": "0.0.1",
   "private": true,
-  "author":{ "name":"zhanghailong", "url":"https://github.com/hailongz" },
-  "repository":{
-	  "type":"git",
-	  "url":"https://github.com/hailongz/kk.git"
+  "author": {
+    "name": "zhanghailong",
+    "url": "https://github.com/hailongz"
+  },
+  "description": "kk web framework",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hailongz/kk-web.git"
   },
   "dependencies": {
-	  
+    "events": "^1.1.0",
+    "fs": "0.0.2",
+    "util": "^0.10.3"
   }
 }
