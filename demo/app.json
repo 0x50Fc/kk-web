@@ -1,0 +1,23 @@
+{
+  "ver": "5b3b043a",
+  "res": [
+    {
+      "path": "home.js",
+      "ver": "5b3b043a"
+    },
+    {
+      "path": "home_view.js",
+      "ver": "5b3b043a"
+    },
+    {
+      "path": "main.js",
+      "ver": "5b3b043a"
+    }
+  ],
+  "md5": "2d4dd1b7c844f6460f7b41b7526d513d",
+  "title": "小应用",
+  "version": "1.0",
+  "ignore": [
+    "*.html"
+  ]
+}
