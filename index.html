@@ -68,6 +68,14 @@
     <script type="text/javascript">
         (function () {
             var app = new kk.Application();
+            var query = {};
+            (window.location.search || '').replace(/([^&=\?]+)=([^&=\?]*)/g,function(text,name,value){
+                query[name] = decodeURIComponent(value);
+            });
+            app.data.set(["query"],query);
+            app.data.on(["alert"],function(data){
+                alert(data);
+            });
             app.run("app/app.json", document.getElementById('kk-app'));
             document.title = "VR";
         })();
