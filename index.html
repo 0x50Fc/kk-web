@@ -22,8 +22,10 @@
     <script src="lib/kk.element.webview.js"></script>
     <script src="lib/kk.element.scrollview.js"></script>
     <script src="lib/kk.element.slideview.js"></script>
+    <script src="lib/kk.element.pagerview.js"></script>
     <script src="lib/kk.element.animation.js"></script>
     <script src="lib/kk.page.js"></script>
+    <script src="lib/kk.window.js"></script>
     <style type="text/css">
         .kk-app {
             position: absolute;
@@ -55,6 +57,11 @@
             border-style: solid;
             border-width: 0px;
             border-color: rgba(0,0,0,0);
+            cursor: default;
+        }
+
+        .kk-text {
+            padding: 2px 0px 0px 0px;
         }
 
         .kk-scrollview::-webkit-scrollbar {
@@ -66,20 +73,9 @@
 <body>
     <div class="kk-app" id="kk-app"></div>
     <script type="text/javascript">
-        (function () {
-            var app = new kk.Application();
-            var query = {};
-            (window.location.search || '').replace(/([^&=\?]+)=([^&=\?]*)/g,function(text,name,value){
-                query[name] = decodeURIComponent(value);
-            });
-            app.data.set(["query"],query);
-            app.data.on(["alert"],function(data){
-                alert(data);
-            });
-            app.run("app/app.json", document.getElementById('kk-app'));
-            document.title = "VR";
-        })();
+        basePath = "/wallet"
     </script>
+    <script type="text/javascript" src="startup.js"></script>
 </body>
 
 </html>
