@@ -98,11 +98,22 @@
 
         app.data.set(["query"], query);
 
+        if(window.appObject) {
+            for(var key in appObject) {
+                app.data.set([key],appObject[key]);
+            }
+        }
+
         app.data.on(["alert"], function (data) {
             alert(data);
         });
 
         app.run(basePath + "/app.json", document.getElementById('kk-app'));
+
+        if(kk.app === undefined) {
+            kk.app = app;
+        }
+        
     };
 
     $.ajax({
