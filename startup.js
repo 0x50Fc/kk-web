@@ -78,6 +78,8 @@
 
         var app = new kk.Application();
 
+        app.UnitRPX = config.UnitRPX;
+        
         if (config && config.app) {
             for (var key in config.app) {
                 app.data.set([key], config.app[key]);
