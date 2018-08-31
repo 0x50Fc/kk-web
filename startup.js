@@ -78,7 +78,7 @@
 
         var app = new kk.Application();
 
-        app.UnitRPX = config.UnitRPX;
+        app.config = config;
         
         if (config && config.app) {
             for (var key in config.app) {
