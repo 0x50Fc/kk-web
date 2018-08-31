@@ -30,6 +30,7 @@ body {
     border-width: 0px;
     border-color: rgba(0,0,0,0);
     cursor: default;
+    box-sizing: border-box;
 }
 
 .kk-text {
@@ -38,4 +39,18 @@ body {
 
 .kk-scrollview::-webkit-scrollbar {
     display: none;
+}
+
+.kk-input,.kk-button {
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    outline:none;
+    border: solid 0px #fff;
+    background: inherit;
+    text-align: left;
+}
+
+.kk-input:focus, .kk-button:focus{
+    outline:none;
+    border: solid 0px #fff;
 }
