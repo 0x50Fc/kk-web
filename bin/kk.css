@@ -46,7 +46,7 @@ body {
     -webkit-tap-highlight-color: rgba(0,0,0,0);
     outline:none;
     border: solid 0px #fff;
-    background: inherit;
+    background: initial;
     text-align: left;
 }
 
