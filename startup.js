@@ -1,7 +1,7 @@
 (function () {
 
-    if (basePath === undefined) {
-        basePath = '';
+    if (kk.basePath === undefined) {
+        kk.basePath = '';
     }
 
     var httpProxys = [];
@@ -79,7 +79,7 @@
         var app = new kk.Application();
 
         app.config = config;
-        
+
         if (config && config.app) {
             for (var key in config.app) {
                 app.data.set([key], config.app[key]);
@@ -98,11 +98,12 @@
             query[name] = decodeURIComponent(value);
         });
 
+        app.data.set(["hash"], window.location.hash);
         app.data.set(["query"], query);
 
-        if(window.appObject) {
-            for(var key in appObject) {
-                app.data.set([key],appObject[key]);
+        if (window.appObject) {
+            for (var key in appObject) {
+                app.data.set([key], appObject[key]);
             }
         }
 
@@ -110,23 +111,54 @@
             alert(data);
         });
 
-        app.run(basePath + "/app.json", document.getElementById('kk-app'));
+        (function () {
 
-        if(kk.app === undefined) {
+            var updatting = false;
+
+            app.data.on(["hash"], function (v) {
+                updatting = true;
+                window.location.hash = v;
+                updatting = false;
+            });
+
+            var fn;
+
+            fn = function () {
+
+                if (window.location.hash != app.data.get(["hash"])) {
+                    if (!updatting) {
+                        app.data.set(["hash"], window.location.hash);
+                    }
+                }
+
+                setTimeout(fn, 600);
+            };
+
+            setTimeout(fn, 600);
+
+        })();
+
+        app.run(kk.basePath + "/app.json", document.getElementById('kk-app'));
+
+        if (kk.app === undefined) {
             kk.app = app;
         }
-        
     };
 
-    $.ajax({
-        method: 'GET',
-        url: basePath + '/.config.json',
-        dataType: 'json',
-        error: function (e) {
-            main({});
-        },
-        success: function (data) {
-            main(data);
-        }
-    });
+    if (kk.config === undefined) {
+        $.ajax({
+            method: 'GET',
+            url: kk.basePath + '/.config.json',
+            dataType: 'json',
+            error: function (e) {
+                main();
+            },
+            success: function (data) {
+                main(data);
+            }
+        });
+    } else {
+        main(kk.config);
+    }
+
 })();
