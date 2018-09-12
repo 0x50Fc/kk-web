@@ -138,7 +138,7 @@
 
         })();
 
-        app.run(kk.basePath + "/app.json", document.getElementById('kk-app'));
+        app.run(kk.basePath + "/app.json?v=" + (query["v"] || ''), document.getElementById('kk-app'));
 
         if (kk.app === undefined) {
             kk.app = app;
