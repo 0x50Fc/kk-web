@@ -11,51 +11,26 @@
 
     var http = function (options) {
 
-        var data = {};
+        var url = options.url;
+        var scheme = 'http';
+        var domain = '';
+        var path = '';
 
-        for (var key in options) {
-            var v = options[key];
-            if (typeof v != 'function') {
-                data[key] = v;
-            }
-        }
-
-        var id = (++autoId);
-
-        httpTasks[id] = options;
-
-        $.ajax({
-            url: '/_http',
-            type: 'POST',
-            dataType: options.type || 'json',
-            contentType: "application/json",
-            data: JSON.stringify(data),
-            headers: options.headers,
-            success: function (data) {
-                var options = httpTasks[id];
-                if (options) {
-                    delete httpTasks[id];
-                    if (typeof options.onload == 'function') {
-                        options.onload(data);
-                    }
-                }
-            },
-            error: function (e) {
-                var options = httpTasks[id];
-                if (options) {
-                    delete httpTasks[id];
-                    if (typeof options.onfail == 'function') {
-                        options.onfail(e + '');
-                    }
-                }
-            }
+        url.replace(/^([a-z]+):\/\/([^\/]+)(.*)$/g,function(text,s,d,p){
+            scheme = s;
+            domain = d;
+            path = p;
         });
 
-        return {
-            cancel: function () {
-                delete httpTasks[id];
-            }
-        };
+        var headers = options.headers || {};
+
+        headers["Base-URL"] = scheme + "://" + domain;
+
+        options.headers = headers;
+        options.url = "/_http" + path;
+
+        return httpSend(options);
+
     };
 
     kk.http.send = function (options) {

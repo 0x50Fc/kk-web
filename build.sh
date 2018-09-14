@@ -11,4 +11,5 @@ uglifyjs kk.js kk.extend.js kk.data.js kk.storage.js kk.date.js kk.event.js kk.h
 
 cd ..
 
+
 uglifyjs startup.js -o ./bin/startup.min.js
