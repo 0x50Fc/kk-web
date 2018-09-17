@@ -202,6 +202,9 @@
                 });
 
                 this._ace.setTheme(this.get("theme") || 'ace/theme/tomorrow');
+                this._ace.getSession().setNewLineMode('unix');
+                this._ace.getSession().setTabSize(2);
+                
                 var mode = this.get("mode");
                 if (mode) {
                     this._ace.getSession().setMode(mode);

@@ -35,6 +35,10 @@ body {
 
 .kk-text {
     padding: 1px 0px 0px 0px;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
 }
 
 .kk-scrollview::-webkit-scrollbar {
